@@ -11,9 +11,15 @@ def hello():
 
 @app.route('/<file>', methods=['GET', 'POST'])
 def test_api(file):
-    f = open(f'route/{file}.json')
-    data = json.load(f)
-    return data,200
+    try:
+        f = open(f'route/{file}.json')
+        data = json.load(f)
+    except:
+        data = {
+                    "response" : {"msg": f"Not found file {file}.json"},
+                    "status_code": 200
+               }
+    return data['response'], data['status_code']
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)

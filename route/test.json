@@ -1,3 +1,4 @@
 {
-    "test":true
+    "response" : {"test":true},
+    "status_code": 200
 }
